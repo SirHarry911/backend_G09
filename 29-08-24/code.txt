@@ -1,0 +1,63 @@
+Microsoft Windows [Version 10.0.22631.4037]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Harshdeep Singh>mongosh
+Current Mongosh Log ID: 66d3f191fd066c40e92710bb
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.0
+Using MongoDB:          7.0.14
+Using Mongosh:          2.3.0
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2024-08-31T18:01:54.840+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> use backend
+switched to db backend
+backend> db.users.find().pretty()
+
+backend> db.user().find()
+TypeError: db.user is not a function
+backend> db.backend()
+TypeError: db.backend is not a function
+backend> db.user.find()
+[
+  {
+    _id: ObjectId('66d15a3c804b791cfe2710bc'),
+    name: 'Alex',
+    age: 24,
+    marks: 50,
+    subject: 'Physical Edu'
+  },
+  {
+    _id: ObjectId('66d15a3c804b791cfe2710bd'),
+    name: 'Josh',
+    age: 25,
+    marks: 70,
+    subject: 'Maths'
+  },
+  {
+    _id: ObjectId('66d15a3c804b791cfe2710be'),
+    name: 'Christian',
+    age: 18,
+    marks: 60,
+    subject: 'Economics'
+  },
+  {
+    _id: ObjectId('66d15a3c804b791cfe2710bf'),
+    name: 'Rhys',
+    age: 27,
+    marks: 55,
+    subject: 'Science'
+  },
+  {
+    _id: ObjectId('66d15a3c804b791cfe2710c0'),
+    name: 'Jameson',
+    age: 20,
+    marks: 67,
+    subject: 'History'
+  }
+]
+backend>
