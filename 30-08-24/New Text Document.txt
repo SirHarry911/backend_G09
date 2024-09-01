@@ -1,0 +1,95 @@
+Microsoft Windows [Version 10.0.22631.4037]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Harshdeep Singh>mongosh
+Current Mongosh Log ID: 66d3f191fd066c40e92710bb
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.0
+Using MongoDB:          7.0.14
+Using Mongosh:          2.3.0
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2024-08-31T18:01:54.840+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> use backend
+switched to db backend
+
+backend> db.user.countDocuments()
+5
+backend> db.user.countDocuments({name:"Harsh"})
+0
+backend> db.user.countDocuments({name:"Josh"})
+1
+backend> db.createCollection("books")
+{ ok: 1 }
+backend> show collections
+books
+user
+backend> db.books.insertMany([
+...   {
+...     "title": "The Great Gatsby",
+...     "author": "F. Scott Fitzgerald",
+...     "published_year": 1925,
+...     "genres": ["Fiction", "Classic"],
+...     "copies_sold": 25000000
+...   },
+...   {
+...     "title": "1984",
+...     "author": "George Orwell",
+...     "published_year": 1949,
+...     "genres": ["Dystopian", "Science Fiction"],
+...     "copies_sold": 30000000
+...   },
+...   {
+...     "title": "To Kill a Mockingbird",
+...     "author": "Harper Lee",
+...     "published_year": 1960,
+...     "genres": ["Fiction", "Classic"],
+...     "copies_sold": 40000000
+...   }
+... ])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('66d3f7f4fd066c40e92710bc'),
+    '1': ObjectId('66d3f7f4fd066c40e92710bd'),
+    '2': ObjectId('66d3f7f4fd066c40e92710be')
+  }
+}
+backend> db.books.findOne()
+{
+  _id: ObjectId('66d3f7f4fd066c40e92710bc'),
+  title: 'The Great Gatsby',
+  author: 'F. Scott Fitzgerald',
+  published_year: 1925,
+  genres: [ 'Fiction', 'Classic' ],
+  copies_sold: 25000000
+}
+backend> db.books.findOne({name:"To Kill a Mockingbird"})
+null
+backend> db.books.findOne({title:"To Kill a Mockingbird"})
+{
+  _id: ObjectId('66d3f7f4fd066c40e92710be'),
+  title: 'To Kill a Mockingbird',
+  author: 'Harper Lee',
+  published_year: 1960,
+  genres: [ 'Fiction', 'Classic' ],
+  copies_sold: 40000000
+}
+backend> db.books.insertOne({title:"The Divine Comedy",
+... author:"Dantes Alligheri"
+... })
+{
+  acknowledged: true,
+  insertedId: ObjectId('66d3fa10fd066c40e92710bf')
+}
+backend> db.books.findOne({author:"Dantes Alligheri"})
+{
+  _id: ObjectId('66d3fa10fd066c40e92710bf'),
+  title: 'The Divine Comedy',
+  author: 'Dantes Alligheri'
+}
+backend>
