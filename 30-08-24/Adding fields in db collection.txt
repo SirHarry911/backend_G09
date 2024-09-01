@@ -1,0 +1,59 @@
+Microsoft Windows [Version 10.0.22631.4037]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Harshdeep Singh>mongosh
+Current Mongosh Log ID: 66d41bd020e4f9e91d2710bb
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.0
+Using MongoDB:          7.0.14
+Using Mongosh:          2.3.0
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2024-08-31T18:01:54.840+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> use backend
+switched to db backend
+backend> db.user.updateMany({},{$set:{subject:"Data Science"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 5,
+  modifiedCount: 5,
+  upsertedCount: 0
+}
+backend> db.user.updateMany({},{$set:{Grade:"A"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 5,
+  modifiedCount: 5,
+  upsertedCount: 0
+}
+backend> db.user.updateMany({marks:{$gte:20}},{$set:{Grade:"O}})
+Uncaught:
+SyntaxError: Unterminated string constant. (1:50)
+
+> 1 | db.user.updateMany({marks:{$gte:20}},{$set:{Grade:"O}})
+    |                                                   ^
+  2 |
+
+backend> db.user.updateMany({marks:{$gte:20}},{$set:{Grade:"O"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 5,
+  modifiedCount: 5,
+  upsertedCount: 0
+}
+backend> db.user.updateMany({marks:{$gte:60}},{$set:{Grade:"A"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 3,
+  upsertedCount: 0
+}
+backend>
