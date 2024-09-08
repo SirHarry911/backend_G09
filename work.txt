@@ -1,0 +1,217 @@
+Microsoft Windows [Version 10.0.22631.4112]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Harshdeep Singh>mongosh
+Current Mongosh Log ID: 66dd7f08388da1b1a32710bb
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.0
+Using MongoDB:          7.0.14
+Using Mongosh:          2.3.0
+mongosh 2.3.1 is available for download: https://www.mongodb.com/try/download/shell
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2024-09-07T10:02:22.239+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> use backend
+switched to db backend
+backend> db.books.deleteOne({name:"The Divine Comedy"})
+{ acknowledged: true, deletedCount: 0 }
+backend> db.books.deleteOne({name:"To Kill A Mockingbird"})
+{ acknowledged: true, deletedCount: 0 }
+backend> db.books.findOne({ name: "To Kill a Mockingbird" })
+null
+backend> db.books
+backend.books
+backend> db.books.find()
+[
+  {
+    _id: ObjectId('66d3f7f4fd066c40e92710bc'),
+    title: 'The Great Gatsby',
+    author: 'F. Scott Fitzgerald',
+    published_year: 1925,
+    genres: [ 'Fiction', 'Classic' ],
+    copies_sold: 25000000
+  },
+  {
+    _id: ObjectId('66d3f7f4fd066c40e92710bd'),
+    title: '1984',
+    author: 'George Orwell',
+    published_year: 1949,
+    genres: [ 'Dystopian', 'Science Fiction' ],
+    copies_sold: 30000000
+  },
+  {
+    _id: ObjectId('66d3f7f4fd066c40e92710be'),
+    title: 'To Kill a Mockingbird',
+    author: 'Harper Lee',
+    published_year: 1960,
+    genres: [ 'Fiction', 'Classic' ],
+    copies_sold: 40000000
+  },
+  {
+    _id: ObjectId('66d3fa10fd066c40e92710bf'),
+    title: 'The Divine Comedy',
+    author: 'Dantes Alligheri'
+  }
+]
+backend> db.books.deleteOne({title:"The Divine Comedy"})
+{ acknowledged: true, deletedCount: 1 }
+backend> db.books.insertMany([{])
+Uncaught:
+SyntaxError: Unexpected token (1:22)
+
+> 1 | db.books.insertMany([{])
+    |                       ^
+  2 |
+
+backend>     "title": "Pride and Prejudice",
+Uncaught:
+SyntaxError: Missing semicolon. (1:11)
+
+> 1 |     "title": "Pride and Prejudice",
+    |            ^
+  2 |
+
+backend>     "author": "Jane Austen",
+Uncaught:
+SyntaxError: Missing semicolon. (1:12)
+
+> 1 |     "author": "Jane Austen",
+    |             ^
+  2 |
+
+backend>     "published_year": 1813,
+Uncaught:
+SyntaxError: Missing semicolon. (1:20)
+
+> 1 |     "published_year": 1813,
+    |                     ^
+  2 |
+
+backend>     "genres": ["Romance", "Classic"],
+Uncaught:
+SyntaxError: Missing semicolon. (1:12)
+
+> 1 |     "genres": ["Romance", "Classic"],
+    |             ^
+  2 |
+
+backend>     "copies_sold": 20000000
+Uncaught:
+SyntaxError: Missing semicolon. (1:17)
+
+> 1 |     "copies_sold": 20000000
+    |                  ^
+  2 |
+
+backend>   },
+Uncaught:
+SyntaxError: Unexpected token (1:2)
+
+> 1 |   },
+    |   ^
+  2 |
+
+backend>   {
+...     "title": "Moby-Dick",
+...     "author": "Herman Melville",
+...     "published_year": 1851,
+...     "genres": ["Adventure", "Classic"],
+...     "copies_sold": 15000000
+...   },
+...   {
+...     "title": "War and Peace",
+...     "author": "Leo Tolstoy",
+...     "published_year": 1869,
+...     "genres": ["Historical Fiction", "Classic"],
+...     "copies_sold": 36000000
+...   }
+...
+...
+... use backend
+Uncaught:
+SyntaxError: Missing semicolon. (2:11)
+
+  1 |   {
+> 2 |     "title": "Moby-Dick",
+    |            ^
+  3 |     "author": "Herman Melville",
+  4 |     "published_year": 1851,
+  5 |     "genres": ["Adventure", "Classic"],
+
+backend> db.books.insertMany([
+...   { "title": "To Kill a Mockingbird", "author": "Harper Lee", "published_year": 1960, "genres": ["Fiction", "Classic"], "copies_sold": 40000000 },
+...   { "title": "1984", "author": "George Orwell", "published_year": 1949, "genres": ["Dystopian", "Political Fiction"], "copies_sold": 30000000 },
+...   { "title": "Pride and Prejudice", "author": "Jane Austen", "published_year": 1813, "genres": ["Romance", "Classic"
+], "copies_sold": 20000000 },
+...   { "title": "Moby-Dick", "author": "Herman Melville", "published_year": 1851, "genres": ["Adventure", "Classic"], "copies_sold": 15000000 },
+...   { "title": "War and Peace", "author": "Leo Tolstoy", "published_year": 1869, "genres": ["Historical Fiction", "Classic"], "copies_sold": 36000000 }
+... ]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('66dd81da388da1b1a32710bc'),
+    '1': ObjectId('66dd81da388da1b1a32710bd'),
+    '2': ObjectId('66dd81da388da1b1a32710be'),
+    '3': ObjectId('66dd81da388da1b1a32710bf'),
+    '4': ObjectId('66dd81da388da1b1a32710c0')
+  }
+}
+backend> db.user.find({name:{$in:["Josh","FreakBob","Harshdeep"]}})
+[
+  {
+    _id: ObjectId('66d15a3c804b791cfe2710bd'),
+    name: 'Josh',
+    age: 25,
+    marks: 70,
+    subject: 'Data Science',
+    Grade: 'A'
+  }
+]
+backend> db.user.find({$and: [{age:{$gte:18}},{marks:{$gte:50}}]})
+[
+  {
+    _id: ObjectId('66d15a3c804b791cfe2710bc'),
+    name: 'Alex',
+    age: 24,
+    marks: 50,
+    subject: 'Data Science',
+    Grade: 'O'
+  },
+  {
+    _id: ObjectId('66d15a3c804b791cfe2710bd'),
+    name: 'Josh',
+    age: 25,
+    marks: 70,
+    subject: 'Data Science',
+    Grade: 'A'
+  },
+  {
+    _id: ObjectId('66d15a3c804b791cfe2710be'),
+    name: 'Christian',
+    age: 18,
+    marks: 60,
+    subject: 'Data Science',
+    Grade: 'A'
+  },
+  {
+    _id: ObjectId('66d15a3c804b791cfe2710bf'),
+    name: 'Rhys',
+    age: 27,
+    marks: 55,
+    subject: 'Data Science',
+    Grade: 'O'
+  },
+  {
+    _id: ObjectId('66d15a3c804b791cfe2710c0'),
+    name: 'Jameson',
+    age: 20,
+    marks: 67,
+    subject: 'Data Science',
+    Grade: 'A'
+  }
+]
+backend>
