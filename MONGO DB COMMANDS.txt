@@ -1,0 +1,37 @@
+MONGO DB COMMANDS
+
+use dbName   //create a new database or use an existing database
+
+db.createCollection("")  //create a collection in database
+
+db.dropDatabase("")    // delete the database
+
+db.collectionName.drop()   //delete a collection
+
+db.collectionName.insertOne({name: "Harsh", age: 40, status: "Happily Married"})
+
+db.collectionName.insertMany([{name: "Harsh", age: 40, status: "Happily Married"},{},{}])
+
+db.collectionName.insertMany([{name "FreakBob", age: 34, status: "Deceased", obit: newDate(09-08-1989), courses: ["","",""]}])
+
+db.collectionName.find().sort({gpa:1})  //1 is for ascending sort and -1 for descending sort
+
+db.collectionName.find().limit(n)   //n is the number of fields you want to see
+
+db.collectionName.find({}, {name:true})   // returning just the name field which satisfies the query
+
+db.collectionName.updateMany({fullTime:{exists:False}},{$set:{fullTime:True}})
+
+db.collectionName.deleteOne({name:""})
+
+db.collectionName.deleteMany({fullTime:False})
+
+db.colletionName.deleteMany({name:{$exists:false}})
+
+db.user.find({name:{$ne:"Josh"}}) //not equal to that value
+
+db.user.find({age:{$gte:20}}) // gte->greater than or equal gt->greater than
+
+db.user.find({name:{$in:["Josh","FreakBob","Harshdeep"]}})  // whether the value of the specified field exists in the collection  $nin->not in
+
+db.user.find({$and: [{age:{$gte:18}},{marks:{$gte:50}}]})  //similiary or, not logical operators
